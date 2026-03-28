@@ -81,7 +81,10 @@ img {
 
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
-  *, *::before, *::after { animation-duration: 0.01ms !important; }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
 }
 
 /* ============================================================
@@ -308,52 +311,14 @@ img {
 }
 
 /* ============================================================
-   EXPERIENCE TIMELINE
+   EXPERIENCE TIMELINE BULLETS
    ============================================================ */
-.timeline {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-8);
-}
-
-.timeline-entry {
-  display: grid;
-  grid-template-columns: 200px 1fr;
-  gap: var(--space-4);
-}
-
-.timeline-meta {
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-  padding-top: 4px;
-}
-
-.timeline-company {
-  font-weight: 600;
-  font-size: 0.9375rem;
-  color: var(--color-text);
-}
-
-.timeline-dates {
-  font-size: 0.8125rem;
-  color: var(--color-text-muted);
-  letter-spacing: 0.02em;
-}
-
-.timeline-role {
-  font-family: var(--font-body);
-  font-size: 1rem;
-  font-weight: 500;
-  color: var(--color-text);
-  margin-bottom: var(--space-2);
-}
-
 .timeline-bullets {
   list-style: none;
   display: flex;
   flex-direction: column;
   gap: var(--space-1);
+  margin-top: var(--space-2);
 }
 
 .timeline-bullets li {
@@ -364,10 +329,155 @@ img {
   border-left: 2px solid var(--color-border);
 }
 
+/* ============================================================
+   CAREER TIMELINE
+   ============================================================ */
+.career-timeline {
+  position: relative;
+  padding-left: 40px;
+}
+
+/* Vertical line */
+.career-timeline::before {
+  content: '';
+  position: absolute;
+  left: 8px;
+  top: 8px;
+  bottom: 8px;
+  width: 2px;
+  background: linear-gradient(180deg, var(--color-accent) 0%, var(--color-border) 100%);
+}
+
+.career-node {
+  position: relative;
+  padding-bottom: var(--space-8);
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.55s ease, transform 0.55s ease;
+}
+
+.career-node:last-child {
+  padding-bottom: 0;
+}
+
+.career-node.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Dot centered on the vertical line */
+.career-dot {
+  position: absolute;
+  left: -38px;   /* places center at 40px - 38px + 7px = 9px = line center */
+  top: 5px;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--color-surface);
+  border: 2px solid var(--color-accent);
+  z-index: 1;
+  transition: background 0.3s ease, border-color 0.3s ease;
+}
+
+.career-node.is-visible .career-dot {
+  background: var(--color-accent);
+}
+
+.career-meta {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  margin-bottom: 4px;
+}
+
+.career-company {
+  font-weight: 600;
+  font-size: 0.9375rem;
+  color: var(--color-text);
+}
+
+.career-dates {
+  font-size: 0.8125rem;
+  color: var(--color-text-muted);
+  letter-spacing: 0.02em;
+}
+
+.career-role {
+  font-family: var(--font-body);
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--color-text);
+  margin-bottom: var(--space-1);
+}
+
+.career-desc {
+  font-size: 0.9375rem;
+  color: var(--color-text-muted);
+  line-height: 1.65;
+  max-width: 62ch;
+}
+
+/* "Additional Experience" divider inside the timeline */
+.timeline-divider {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  margin-left: -40px;
+  padding-left: 2px;
+  padding-bottom: var(--space-4);
+  padding-top: var(--space-2);
+}
+
+.timeline-divider .career-dot {
+  position: static;
+  flex-shrink: 0;
+  background: var(--color-accent);
+}
+
+.timeline-divider-label {
+  font-family: var(--font-body);
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: var(--color-text);
+}
+
 @media (max-width: 600px) {
-  .timeline-entry {
-    grid-template-columns: 1fr;
-    gap: var(--space-1);
+  .timeline-divider {
+    margin-left: -28px;
+    gap: 14px;
+  }
+}
+
+.timeline-additional {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.timeline-additional li {
+  font-size: 0.9375rem;
+  font-family: var(--font-body);
+  color: var(--color-text);
+  line-height: 1.6;
+}
+
+.additional-desc {
+  color: var(--color-text-muted);
+}
+
+@media (max-width: 600px) {
+  .career-timeline {
+    padding-left: 28px;
+  }
+  .career-timeline::before {
+    left: 5px;
+  }
+  .career-dot {
+    left: -26px;
+    width: 12px;
+    height: 12px;
   }
 }
 
