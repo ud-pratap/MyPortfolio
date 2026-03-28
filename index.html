@@ -9,19 +9,40 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300;400;500;600&family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
+  <script>
+    (function () {
+      var t = localStorage.getItem('theme');
+      if (t === 'light') document.documentElement.setAttribute('data-theme', 'light');
+    })();
+  </script>
 </head>
 <body>
 
   <nav class="site-nav" aria-label="Main navigation">
     <div class="nav-inner">
       <span class="nav-name">Udayan Pratap</span>
-      <ul class="nav-links">
-        <li><a href="#about">About</a></li>
-        <li><a href="#experience">Experience</a></li>
-        <li><a href="#education">Education</a></li>
-        <li><a href="#skills">Skills</a></li>
-        <li><a href="#contact">Contact</a></li>
-      </ul>
+      <div class="nav-end">
+        <ul class="nav-links">
+          <li><a href="#about">About</a></li>
+          <li><a href="#experience">Experience</a></li>
+          <li><a href="#education">Education</a></li>
+          <li><a href="#skills">Skills</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+        <button class="theme-toggle" aria-label="Switch to light mode">
+          <svg class="icon-sun" xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/>
+          </svg>
+          <svg class="icon-moon" xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+          </svg>
+        </button>
+        <button class="nav-hamburger" aria-label="Toggle navigation" aria-expanded="false">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
     </div>
   </nav>
 
@@ -43,7 +64,7 @@
       </div>
     </section>
 
-    <section id="highlights" class="section-content section-highlights">
+    <section id="highlights" class="section-content section-highlights section-reveal">
       <div class="content-inner">
         <h2 class="section-heading">Highlights</h2>
         <div class="highlights-grid">
@@ -67,7 +88,7 @@
       </div>
     </section>
 
-    <section id="experience" class="section-content">
+    <section id="experience" class="section-content section-reveal">
       <div class="content-inner">
         <h2 class="section-heading">Experience</h2>
 
@@ -156,7 +177,7 @@
       </div>
     </section>
 
-    <section id="education" class="section-content section-education">
+    <section id="education" class="section-content section-education section-reveal">
       <div class="content-inner">
         <h2 class="section-heading">Education</h2>
         <div class="education-grid">
@@ -194,7 +215,7 @@
       </div>
     </section>
 
-    <section id="skills" class="section-content">
+    <section id="skills" class="section-content section-reveal">
       <div class="content-inner">
         <h2 class="section-heading">Skills</h2>
 
@@ -244,7 +265,7 @@
       </div>
     </section>
 
-    <section id="contact" class="section-content section-contact">
+    <section id="contact" class="section-content section-contact section-reveal">
       <div class="content-inner">
         <h2 class="section-heading">Contact</h2>
         <p class="contact-cta-line">Open to principal PM and product leadership roles.</p>
